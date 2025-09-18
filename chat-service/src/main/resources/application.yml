@@ -1,0 +1,64 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: llama-chat-service
+  
+  # Jackson configuration for JSON serialization
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+# Logging configuration
+logging:
+  level:
+    com.example.chatservice: INFO
+    reactor.netty.http.client: INFO
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+
+# Management endpoints for monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+
+# Custom application properties
+chat:
+  ollama:
+    # Ollama API base URL
+    base-url: http://localhost:11434
+    # Default model to use for chat
+    default-model: llama3.2:latest
+    # Request timeout in seconds
+    timeout-seconds: 120
+    # Temperature for response generation (0.0 to 1.0)
+    temperature: 0.7
+    # Maximum tokens in response
+    max-tokens: 2000
+  
+  mcp:
+    # MCP streaming service configuration
+    service-url: http://localhost:8080
+    # Connection timeout
+    timeout-seconds: 30
+    # Retry configuration
+    max-retries: 3
+    retry-delay-seconds: 1
+
+  # Tool calling configuration
+  tools:
+    # Enable tool calling functionality
+    enabled: true
+    # Maximum number of tool calls in a single conversation turn
+    max-calls-per-turn: 5
+    # Tool call timeout
+    timeout-seconds: 60
