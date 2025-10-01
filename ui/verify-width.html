@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Full Width Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .full-width-input {
+            width: 100% !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
+            flex: 1 !important;
+        }
+        .full-width-container {
+            width: 100% !important;
+            max-width: none !important;
+            flex: 1 !important;
+        }
+        .highlight-borders {
+            border: 2px solid red !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="h-screen flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-50 border-r border-gray-200 flex flex-col">
+            <div class="p-4">
+                <h1 class="text-lg font-semibold">Sidebar: 256px</h1>
+                <p class="text-xs text-gray-600 mt-2">Fixed width sidebar</p>
+            </div>
+        </div>
+        
+        <!-- Chat Interface -->
+        <div class="flex-1 flex flex-col bg-white min-w-0">
+            <div class="border-b border-gray-200 p-4 bg-gray-50">
+                <h2 class="font-semibold">Chat Area: REMAINING WIDTH</h2>
+                <p class="text-xs text-gray-600">Should use all remaining horizontal space</p>
+            </div>
+            
+            <div class="flex-1 flex items-center justify-center">
+                <p class="text-gray-500 text-center">
+                    <span class="block text-lg font-semibold">Screen Width Test</span>
+                    <span class="block text-sm">The input below should span almost the full width</span>
+                    <span class="block text-xs text-blue-600">Red borders show the actual input boundaries</span>
+                </p>
+            </div>
+            
+            <!-- Message Input Area with Red Borders for Testing -->
+            <div class="border-t border-gray-200 bg-white py-4">
+                <form class="flex gap-2 items-end w-full px-2">
+                    <div class="full-width-container flex-1 relative min-w-0 highlight-borders" style="width: 100%;">
+                        <textarea 
+                            class="full-width-input w-full box-border px-3 py-4 border-2 border-gray-300 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all min-h-[56px] text-base bg-white hover:border-gray-400 highlight-borders"
+                            style="width: 100%; box-sizing: border-box;"
+                            placeholder="Type your message - THIS SHOULD BE FULL WIDTH!"
+                            rows="1"></textarea>
+                    </div>
+                    <button class="px-4 py-4 rounded-xl font-medium bg-blue-500 hover:bg-blue-600 text-white flex items-center gap-1 min-h-[56px] flex-shrink-0 highlight-borders">
+                        Send
+                    </button>
+                </form>
+                <div class="mt-2 px-2 text-xs text-gray-500 flex items-center justify-between">
+                    <span>Width Test: Measure the red-bordered input field</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

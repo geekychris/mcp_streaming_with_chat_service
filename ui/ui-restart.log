@@ -1,0 +1,439 @@
+
+> chat-ui@0.1.0 start
+> react-scripts start
+
+(node:94463) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:94463) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled successfully!
+
+You can now view chat-ui in the browser.
+
+  Local:            http://localhost:3000
+  On Your Network:  http://192.168.1.145:3000
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/MessageInput.tsx
+Syntax error: Unexpected token. Did you mean `{'}'}` or `&rbrace;`? (114:undefined)
+ERROR in ./src/components/MessageInput.tsx
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/src/components/MessageInput.tsx: Unterminated JSX contents. (112:10)
+
+  110 |         )}
+  111 |       </div>
+> 112 |     </div>
+      |           ^
+  113 |   );
+  114 | };
+  115 |
+    at constructor (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6630:19)
+    at TypeScriptParserMixin.jsxReadToken (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4481:20)
+    at TypeScriptParserMixin.getTokenFromCode (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4807:12)
+    at TypeScriptParserMixin.getTokenFromCode (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10009:11)
+    at TypeScriptParserMixin.nextToken (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:5813:10)
+    at TypeScriptParserMixin.next (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:5723:10)
+    at TypeScriptParserMixin.eat (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:5727:12)
+    at TypeScriptParserMixin.expect (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6929:15)
+    at TypeScriptParserMixin.jsxParseClosingElementAt (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4713:10)
+    at TypeScriptParserMixin.jsxParseElementAt (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4728:37)
+    at TypeScriptParserMixin.jsxParseElementAt (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4731:32)
+    at TypeScriptParserMixin.jsxParseElement (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4782:17)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4792:19)
+    at TypeScriptParserMixin.parseExprSubscripts (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11085:23)
+    at TypeScriptParserMixin.parseUpdate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11070:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11050:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9857:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10903:61)
+    at TypeScriptParserMixin.parseExprOps (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10908:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10885:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10835:21)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9795:39
+    at TypeScriptParserMixin.tryParse (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6938:20)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9795:18)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10804:39
+    at TypeScriptParserMixin.allowInAnd (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12436:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10804:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12503:17)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11683:28)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11335:23)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4797:20)
+    at TypeScriptParserMixin.parseExprSubscripts (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11085:23)
+    at TypeScriptParserMixin.parseUpdate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11070:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11050:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9857:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10903:61)
+    at TypeScriptParserMixin.parseExprOps (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10908:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10885:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10835:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9806:20)
+    at TypeScriptParserMixin.parseExpressionBase (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10788:23)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10784:39
+    at TypeScriptParserMixin.allowInAnd (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12431:16)
+    at TypeScriptParserMixin.parseExpression (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10784:17)
+    at TypeScriptParserMixin.parseReturnStatement (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13151:28)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12807:21)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9532:18)
+    at TypeScriptParserMixin.parseStatementLike (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12776:17)
+    at TypeScriptParserMixin.parseStatementListItem (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12756:17)
+
+ERROR in [eslint] 
+src/components/MessageInput.tsx
+  Line 114:  Parsing error: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+webpack compiled with 2 errors
+ERROR in src/components/ChatInterface.tsx:4:8
+TS1192: Module '"/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/src/components/MessageInput"' has no default export.
+    2 | import { AlertCircle, RefreshCw, MessageSquare } from 'lucide-react';
+    3 | import ChatMessage from './ChatMessage';
+  > 4 | import MessageInput from './MessageInput';
+      |        ^^^^^^^^^^^^
+    5 | import { ChatMessage as ChatMessageType } from '../types/chat';
+    6 |
+    7 | interface ChatInterfaceProps {
+
+ERROR in src/components/MessageInput.tsx
+TS1005: '</' expected.
+
+ERROR in src/components/MessageInput.tsx:55:6
+TS17008: JSX element 'div' has no corresponding closing tag.
+    53 |
+    54 |   return (
+  > 55 |     <div className="border-t border-gray-200 bg-white p-6">
+       |      ^^^
+    56 |       <div className="max-w-5xl mx-auto">
+    57 |         <form onSubmit={handleSubmit} className="flex gap-4 items-end w-full">
+    58 |         <div className="flex-1 relative">
+
+ERROR in src/components/MessageInput.tsx:114:1
+TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+    112 |     </div>
+    113 |   );
+  > 114 | };
+        | ^
+    115 |
+    116 | export default MessageInput;
+
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/MessageInput.tsx
+Syntax error: Unexpected token. Did you mean `{'}'}` or `&rbrace;`? (114:undefined)
+ERROR in ./src/components/MessageInput.tsx
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/src/components/MessageInput.tsx: Unterminated JSX contents. (112:10)
+
+  110 |         )}
+  111 |       </div>
+> 112 |     </div>
+      |           ^
+  113 |   );
+  114 | };
+  115 |
+    at constructor (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6630:19)
+    at TypeScriptParserMixin.jsxReadToken (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4481:20)
+    at TypeScriptParserMixin.getTokenFromCode (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4807:12)
+    at TypeScriptParserMixin.getTokenFromCode (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10009:11)
+    at TypeScriptParserMixin.nextToken (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:5813:10)
+    at TypeScriptParserMixin.next (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:5723:10)
+    at TypeScriptParserMixin.eat (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:5727:12)
+    at TypeScriptParserMixin.expect (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6929:15)
+    at TypeScriptParserMixin.jsxParseClosingElementAt (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4713:10)
+    at TypeScriptParserMixin.jsxParseElementAt (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4728:37)
+    at TypeScriptParserMixin.jsxParseElementAt (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4731:32)
+    at TypeScriptParserMixin.jsxParseElement (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4782:17)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4792:19)
+    at TypeScriptParserMixin.parseExprSubscripts (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11085:23)
+    at TypeScriptParserMixin.parseUpdate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11070:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11050:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9857:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10903:61)
+    at TypeScriptParserMixin.parseExprOps (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10908:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10885:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10835:21)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9795:39
+    at TypeScriptParserMixin.tryParse (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6938:20)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9795:18)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10804:39
+    at TypeScriptParserMixin.allowInAnd (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12436:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10804:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12503:17)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11683:28)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11335:23)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4797:20)
+    at TypeScriptParserMixin.parseExprSubscripts (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11085:23)
+    at TypeScriptParserMixin.parseUpdate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11070:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11050:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9857:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10903:61)
+    at TypeScriptParserMixin.parseExprOps (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10908:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10885:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10835:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9806:20)
+    at TypeScriptParserMixin.parseExpressionBase (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10788:23)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10784:39
+    at TypeScriptParserMixin.allowInAnd (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12431:16)
+    at TypeScriptParserMixin.parseExpression (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10784:17)
+    at TypeScriptParserMixin.parseReturnStatement (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13151:28)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12807:21)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9532:18)
+    at TypeScriptParserMixin.parseStatementLike (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12776:17)
+    at TypeScriptParserMixin.parseStatementListItem (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12756:17)
+
+ERROR in [eslint] 
+src/components/MessageInput.tsx
+  Line 114:  Parsing error: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+webpack compiled with 2 errors
+ERROR in src/components/ChatInterface.tsx:4:8
+TS1192: Module '"/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/src/components/MessageInput"' has no default export.
+    2 | import { AlertCircle, RefreshCw, MessageSquare } from 'lucide-react';
+    3 | import ChatMessage from './ChatMessage';
+  > 4 | import MessageInput from './MessageInput';
+      |        ^^^^^^^^^^^^
+    5 | import { ChatMessage as ChatMessageType } from '../types/chat';
+    6 |
+    7 | interface ChatInterfaceProps {
+
+ERROR in src/components/MessageInput.tsx
+TS1005: '</' expected.
+
+ERROR in src/components/MessageInput.tsx:55:6
+TS17008: JSX element 'div' has no corresponding closing tag.
+    53 |
+    54 |   return (
+  > 55 |     <div className="border-t border-gray-200 bg-white p-6">
+       |      ^^^
+    56 |       <div className="max-w-5xl mx-auto">
+    57 |         <form onSubmit={handleSubmit} className="flex gap-4 items-end w-full">
+    58 |         <div className="flex-1 relative">
+
+ERROR in src/components/MessageInput.tsx:114:1
+TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+    112 |     </div>
+    113 |   );
+  > 114 | };
+        | ^
+    115 |
+    116 | export default MessageInput;
+
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/MessageInput.tsx
+Syntax error: ')' expected (112:4)
+ERROR in ./src/components/MessageInput.tsx
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/src/components/MessageInput.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>? (112:4)
+
+  110 |         </div>
+  111 |       </div>
+> 112 |     </div>
+      |     ^
+  113 |   );
+  114 | };
+  115 |
+    at constructor (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6630:19)
+    at TypeScriptParserMixin.jsxParseElementAt (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4775:18)
+    at TypeScriptParserMixin.jsxParseElement (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4782:17)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4792:19)
+    at TypeScriptParserMixin.parseExprSubscripts (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11085:23)
+    at TypeScriptParserMixin.parseUpdate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11070:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11050:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9857:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10903:61)
+    at TypeScriptParserMixin.parseExprOps (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10908:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10885:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10835:21)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9795:39
+    at TypeScriptParserMixin.tryParse (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6938:20)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9795:18)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10804:39
+    at TypeScriptParserMixin.allowInAnd (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12436:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10804:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12503:17)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11683:28)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11335:23)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4797:20)
+    at TypeScriptParserMixin.parseExprSubscripts (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11085:23)
+    at TypeScriptParserMixin.parseUpdate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11070:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11050:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9857:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10903:61)
+    at TypeScriptParserMixin.parseExprOps (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10908:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10885:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10835:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9806:20)
+    at TypeScriptParserMixin.parseExpressionBase (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10788:23)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10784:39
+    at TypeScriptParserMixin.allowInAnd (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12431:16)
+    at TypeScriptParserMixin.parseExpression (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10784:17)
+    at TypeScriptParserMixin.parseReturnStatement (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13151:28)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12807:21)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9532:18)
+    at TypeScriptParserMixin.parseStatementLike (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12776:17)
+    at TypeScriptParserMixin.parseStatementListItem (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12756:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13325:61)
+    at TypeScriptParserMixin.parseBlockBody (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13318:10)
+    at TypeScriptParserMixin.parseBlock (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13306:10)
+    at TypeScriptParserMixin.parseFunctionBody (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12110:24)
+    at TypeScriptParserMixin.parseArrowExpression (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12085:10)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11695:12)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11335:23)
+    at TypeScriptParserMixin.parseExprAtom (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:4797:20)
+    at TypeScriptParserMixin.parseExprSubscripts (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:11085:23)
+
+ERROR in [eslint] 
+src/components/MessageInput.tsx
+  Line 112:4:  Parsing error: ')' expected
+
+webpack compiled with 2 errors
+ERROR in src/components/MessageInput.tsx:112:5
+TS1005: ')' expected.
+    110 |         </div>
+    111 |       </div>
+  > 112 |     </div>
+        |     ^^
+    113 |   );
+    114 | };
+    115 |
+
+ERROR in src/components/MessageInput.tsx:112:7
+TS2304: Cannot find name 'div'.
+    110 |         </div>
+    111 |       </div>
+  > 112 |     </div>
+        |       ^^^
+    113 |   );
+    114 | };
+    115 |
+
+ERROR in src/components/MessageInput.tsx:113:3
+TS1109: Expression expected.
+    111 |       </div>
+    112 |     </div>
+  > 113 |   );
+        |   ^
+    114 | };
+    115 |
+    116 | export default MessageInput;
+
+ERROR in src/components/MessageInput.tsx:114:1
+TS1128: Declaration or statement expected.
+    112 |     </div>
+    113 |   );
+  > 114 | };
+        | ^
+    115 |
+    116 | export default MessageInput;
+
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.

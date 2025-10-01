@@ -1,0 +1,729 @@
+
+> chat-ui@0.1.0 start
+> react-scripts start
+
+(node:54776) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:54776) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled with warnings.
+
+[eslint] 
+src/hooks/useChat.ts
+  Line 59:6:   React Hook useEffect has missing dependencies: 'loadCapabilities' and 'refreshHealth'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  Line 80:49:  'updateConversationsList' was used before it was defined                                                                                   @typescript-eslint/no-use-before-define
+
+src/services/chatApi.ts
+  Line 1:86:  'ToolCallResult' is defined but never used  @typescript-eslint/no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/hooks/useChat.ts
+  Line 59:6:   React Hook useEffect has missing dependencies: 'loadCapabilities' and 'refreshHealth'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  Line 80:49:  'updateConversationsList' was used before it was defined                                                                                   @typescript-eslint/no-use-before-define
+
+src/services/chatApi.ts
+  Line 1:86:  'ToolCallResult' is defined but never used  @typescript-eslint/no-unused-vars
+
+webpack compiled with 1 warning
+ERROR in src/hooks/useChat.ts:80:49
+TS2448: Block-scoped variable 'updateConversationsList' used before its declaration.
+    78 |     // Update conversations list
+    79 |     updateConversationsList(conversationId, conversationMessages);
+  > 80 |   }, [state.currentConversationId, updateState, updateConversationsList]);
+       |                                                 ^^^^^^^^^^^^^^^^^^^^^^^
+    81 |
+    82 |   const updateConversationsList = useCallback((conversationId: string, messages: ChatMessage[]) => {
+    83 |     setState(prev => {
+
+ERROR in src/hooks/useChat.ts:80:49
+TS2454: Variable 'updateConversationsList' is used before being assigned.
+    78 |     // Update conversations list
+    79 |     updateConversationsList(conversationId, conversationMessages);
+  > 80 |   }, [state.currentConversationId, updateState, updateConversationsList]);
+       |                                                 ^^^^^^^^^^^^^^^^^^^^^^^
+    81 |
+    82 |   const updateConversationsList = useCallback((conversationId: string, messages: ChatMessage[]) => {
+    83 |     setState(prev => {
+
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/hooks/useChat.ts
+Syntax error: ',' expected (140:7)
+WARNING in [eslint] 
+src/services/chatApi.ts
+  Line 1:86:  'ToolCallResult' is defined but never used  @typescript-eslint/no-unused-vars
+
+ERROR in ./src/hooks/useChat.ts
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/src/hooks/useChat.ts: Missing initializer in destructuring declaration. (140:7)
+
+  138 |       return { ...prev, conversations: newConversations };
+  139 |     });
+> 140 |   }, []);
+      |        ^
+  141 |
+  142 |   const sendMessage = useCallback(async (message: string, options: Partial<ChatRequest> = {}) => {
+  143 |     if (!message.trim()) return;
+    at constructor (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:6630:19)
+    at TypeScriptParserMixin.parseVar (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13396:16)
+    at TypeScriptParserMixin.parseVarStatement (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13239:10)
+    at TypeScriptParserMixin.parseVarStatement (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9498:31)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12860:23)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9532:18)
+    at TypeScriptParserMixin.parseStatementLike (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12776:17)
+    at TypeScriptParserMixin.parseStatementListItem (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12756:17)
+    at TypeScriptParserMixin.parseExportDeclaration (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13943:17)
+    at TypeScriptParserMixin.parseExportDeclaration (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9657:85)
+    at TypeScriptParserMixin.maybeParseExportDeclaration (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13902:31)
+    at TypeScriptParserMixin.parseExport (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13821:29)
+    at TypeScriptParserMixin.parseExport (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9475:20)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12887:27)
+    at TypeScriptParserMixin.parseStatementContent (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:9532:18)
+    at TypeScriptParserMixin.parseStatementLike (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12776:17)
+    at TypeScriptParserMixin.parseModuleItem (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12753:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13325:36)
+    at TypeScriptParserMixin.parseBlockBody (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:13318:10)
+    at TypeScriptParserMixin.parseProgram (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12634:10)
+    at TypeScriptParserMixin.parseTopLevel (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:12624:25)
+    at TypeScriptParserMixin.parse (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:14501:10)
+    at TypeScriptParserMixin.parse (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:10149:18)
+    at parse (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/parser/lib/index.js:14535:38)
+    at parser (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/gensync/index.js:261:32)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/gensync/index.js:223:11)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/gensync/index.js:189:28
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/gensync/index.js:113:33
+    at step (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/gensync/index.js:287:14)
+    at /Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/Users/chris/code/warp_experiments/mindmap/java_mcp_streaming/chat-ui/node_modules/gensync/index.js:223:11)
+
+ERROR in [eslint] 
+src/hooks/useChat.ts
+  Line 140:7:  Parsing error: ',' expected
+
+webpack compiled with 2 errors and 1 warning
+ERROR in src/hooks/useChat.ts:28:28
+TS2355: A function whose declared type is neither 'void' nor 'any' must return a value.
+    26 | interface UseChatReturn extends UseChatState, UseChatActions {}
+    27 |
+  > 28 | export const useChat = (): UseChatReturn => {
+       |                            ^^^^^^^^^^^^^
+    29 |   const [state, setState] = useState<UseChatState>({
+    30 |     messages: [],
+    31 |     conversations: [],
+
+ERROR in src/hooks/useChat.ts:113:72
+TS2304: Cannot find name 'conversationId'.
+    111 |   }, [state.currentConversationId, updateState, updateConversationsList]);
+    112 |     setState(prev => {
+  > 113 |       const existingIndex = prev.conversations.findIndex(c => c.id === conversationId);
+        |                                                                        ^^^^^^^^^^^^^^
+    114 |       const lastMessage = messages[messages.length - 1];
+    115 |       const title = messages.length > 0 ? 
+    116 |         chatApiService.generateConversationTitle(messages[0].content) : 
+
+ERROR in src/hooks/useChat.ts:114:27
+TS2304: Cannot find name 'messages'.
+    112 |     setState(prev => {
+    113 |       const existingIndex = prev.conversations.findIndex(c => c.id === conversationId);
+  > 114 |       const lastMessage = messages[messages.length - 1];
+        |                           ^^^^^^^^
+    115 |       const title = messages.length > 0 ? 
+    116 |         chatApiService.generateConversationTitle(messages[0].content) : 
+    117 |         'New Conversation';
+
+ERROR in src/hooks/useChat.ts:114:36
+TS2304: Cannot find name 'messages'.
+    112 |     setState(prev => {
+    113 |       const existingIndex = prev.conversations.findIndex(c => c.id === conversationId);
+  > 114 |       const lastMessage = messages[messages.length - 1];
+        |                                    ^^^^^^^^
+    115 |       const title = messages.length > 0 ? 
+    116 |         chatApiService.generateConversationTitle(messages[0].content) : 
+    117 |         'New Conversation';
+
+ERROR in src/hooks/useChat.ts:115:21
+TS2304: Cannot find name 'messages'.
+    113 |       const existingIndex = prev.conversations.findIndex(c => c.id === conversationId);
+    114 |       const lastMessage = messages[messages.length - 1];
+  > 115 |       const title = messages.length > 0 ? 
+        |                     ^^^^^^^^
+    116 |         chatApiService.generateConversationTitle(messages[0].content) : 
+    117 |         'New Conversation';
+    118 |       
+
+ERROR in src/hooks/useChat.ts:116:50
+TS2304: Cannot find name 'messages'.
+    114 |       const lastMessage = messages[messages.length - 1];
+    115 |       const title = messages.length > 0 ? 
+  > 116 |         chatApiService.generateConversationTitle(messages[0].content) : 
+        |                                                  ^^^^^^^^
+    117 |         'New Conversation';
+    118 |       
+    119 |       const conversation: Conversation = {
+
+ERROR in src/hooks/useChat.ts:120:13
+TS2304: Cannot find name 'conversationId'.
+    118 |       
+    119 |       const conversation: Conversation = {
+  > 120 |         id: conversationId,
+        |             ^^^^^^^^^^^^^^
+    121 |         messages,
+    122 |         lastActivity: lastMessage?.timestamp || new Date().toISOString(),
+    123 |         title,
+
+ERROR in src/hooks/useChat.ts:121:9
+TS18004: No value exists in scope for the shorthand property 'messages'. Either declare one or provide an initializer.
+    119 |       const conversation: Conversation = {
+    120 |         id: conversationId,
+  > 121 |         messages,
+        |         ^^^^^^^^
+    122 |         lastActivity: lastMessage?.timestamp || new Date().toISOString(),
+    123 |         title,
+    124 |       };
+
+ERROR in src/hooks/useChat.ts:140:8
+TS1005: ',' expected.
+    138 |       return { ...prev, conversations: newConversations };
+    139 |     });
+  > 140 |   }, []);
+        |        ^
+    141 |
+    142 |   const sendMessage = useCallback(async (message: string, options: Partial<ChatRequest> = {}) => {
+    143 |     if (!message.trim()) return;
+
+ERROR in src/hooks/useChat.ts:146:9
+TS2304: Cannot find name 'abortControllerRef'.
+    144 |
+    145 |     // Cancel any ongoing request
+  > 146 |     if (abortControllerRef.current) {
+        |         ^^^^^^^^^^^^^^^^^^
+    147 |       abortControllerRef.current.abort();
+    148 |     }
+    149 |     abortControllerRef.current = new AbortController();
+
+ERROR in src/hooks/useChat.ts:147:7
+TS2304: Cannot find name 'abortControllerRef'.
+    145 |     // Cancel any ongoing request
+    146 |     if (abortControllerRef.current) {
+  > 147 |       abortControllerRef.current.abort();
+        |       ^^^^^^^^^^^^^^^^^^
+    148 |     }
+    149 |     abortControllerRef.current = new AbortController();
+    150 |
+
+ERROR in src/hooks/useChat.ts:149:5
+TS2304: Cannot find name 'abortControllerRef'.
+    147 |       abortControllerRef.current.abort();
+    148 |     }
+  > 149 |     abortControllerRef.current = new AbortController();
+        |     ^^^^^^^^^^^^^^^^^^
+    150 |
+    151 |     updateState({ isLoading: true, error: null });
+    152 |
+
+ERROR in src/hooks/useChat.ts:151:5
+TS2304: Cannot find name 'updateState'.
+    149 |     abortControllerRef.current = new AbortController();
+    150 |
+  > 151 |     updateState({ isLoading: true, error: null });
+        |     ^^^^^^^^^^^
+    152 |
+    153 |     // Create user message
+    154 |     const userMessage: ChatMessage = {
+
+ERROR in src/hooks/useChat.ts:159:23
+TS2304: Cannot find name 'state'.
+    157 |       content: message.trim(),
+    158 |       timestamp: new Date().toISOString(),
+  > 159 |       conversationId: state.currentConversationId || undefined,
+        |                       ^^^^^
+    160 |     };
+    161 |
+    162 |     // Add user message to chat
+
+ERROR in src/hooks/useChat.ts:163:5
+TS2304: Cannot find name 'addMessage'.
+    161 |
+    162 |     // Add user message to chat
+  > 163 |     addMessage(userMessage);
+        |     ^^^^^^^^^^
+    164 |
+    165 |     try {
+    166 |       const request: ChatRequest = {
+
+ERROR in src/hooks/useChat.ts:168:25
+TS2304: Cannot find name 'state'.
+    166 |       const request: ChatRequest = {
+    167 |         message: message.trim(),
+  > 168 |         conversationId: state.currentConversationId || undefined,
+        |                         ^^^^^
+    169 |         enableTools: true,
+    170 |         ...options,
+    171 |       };
+
+ERROR in src/hooks/useChat.ts:176:12
+TS2304: Cannot find name 'state'.
+    174 |       
+    175 |       // Update current conversation ID if it was generated
+  > 176 |       if (!state.currentConversationId && response.conversationId) {
+        |            ^^^^^
+    177 |         updateState({ currentConversationId: response.conversationId });
+    178 |       }
+    179 |
+
+ERROR in src/hooks/useChat.ts:177:9
+TS2304: Cannot find name 'updateState'.
+    175 |       // Update current conversation ID if it was generated
+    176 |       if (!state.currentConversationId && response.conversationId) {
+  > 177 |         updateState({ currentConversationId: response.conversationId });
+        |         ^^^^^^^^^^^
+    178 |       }
+    179 |
+    180 |       // Add assistant response
+
+ERROR in src/hooks/useChat.ts:181:7
+TS2304: Cannot find name 'addMessage'.
+    179 |
+    180 |       // Add assistant response
+  > 181 |       addMessage(response.message);
+        |       ^^^^^^^^^^
+    182 |
+    183 |     } catch (error) {
+    184 |       console.error('Failed to send message:', error);
+
+ERROR in src/hooks/useChat.ts:185:7
+TS2304: Cannot find name 'updateState'.
+    183 |     } catch (error) {
+    184 |       console.error('Failed to send message:', error);
+  > 185 |       updateState({ 
+        |       ^^^^^^^^^^^
+    186 |         error: error instanceof Error ? error.message : 'Failed to send message' 
+    187 |       });
+    188 |
+
+ERROR in src/hooks/useChat.ts:195:25
+TS2304: Cannot find name 'state'.
+    193 |         content: `Sorry, I encountered an error: ${error instanceof Error ? error.message : 'Unknown error'}`,
+    194 |         timestamp: new Date().toISOString(),
+  > 195 |         conversationId: state.currentConversationId || undefined,
+        |                         ^^^^^
+    196 |       };
+    197 |       addMessage(errorMessage);
+    198 |     } finally {
+
+ERROR in src/hooks/useChat.ts:197:7
+TS2304: Cannot find name 'addMessage'.
+    195 |         conversationId: state.currentConversationId || undefined,
+    196 |       };
+  > 197 |       addMessage(errorMessage);
+        |       ^^^^^^^^^^
+    198 |     } finally {
+    199 |       updateState({ isLoading: false });
+    200 |       abortControllerRef.current = null;
+
+ERROR in src/hooks/useChat.ts:199:7
+TS2304: Cannot find name 'updateState'.
+    197 |       addMessage(errorMessage);
+    198 |     } finally {
+  > 199 |       updateState({ isLoading: false });
+        |       ^^^^^^^^^^^
+    200 |       abortControllerRef.current = null;
+    201 |     }
+    202 |   }, [state.currentConversationId, addMessage, updateState]);
+
+ERROR in src/hooks/useChat.ts:200:7
+TS2304: Cannot find name 'abortControllerRef'.
+    198 |     } finally {
+    199 |       updateState({ isLoading: false });
+  > 200 |       abortControllerRef.current = null;
+        |       ^^^^^^^^^^^^^^^^^^
+    201 |     }
+    202 |   }, [state.currentConversationId, addMessage, updateState]);
+    203 |
+
+ERROR in src/hooks/useChat.ts:202:7
+TS2304: Cannot find name 'state'.
+    200 |       abortControllerRef.current = null;
+    201 |     }
+  > 202 |   }, [state.currentConversationId, addMessage, updateState]);
+        |       ^^^^^
+    203 |
+    204 |   const startNewConversation = useCallback(() => {
+    205 |     const newConversationId = `conv-${Date.now()}`;
+
+ERROR in src/hooks/useChat.ts:202:36
+TS2304: Cannot find name 'addMessage'.
+    200 |       abortControllerRef.current = null;
+    201 |     }
+  > 202 |   }, [state.currentConversationId, addMessage, updateState]);
+        |                                    ^^^^^^^^^^
+    203 |
+    204 |   const startNewConversation = useCallback(() => {
+    205 |     const newConversationId = `conv-${Date.now()}`;
+
+ERROR in src/hooks/useChat.ts:202:48
+TS2304: Cannot find name 'updateState'.
+    200 |       abortControllerRef.current = null;
+    201 |     }
+  > 202 |   }, [state.currentConversationId, addMessage, updateState]);
+        |                                                ^^^^^^^^^^^
+    203 |
+    204 |   const startNewConversation = useCallback(() => {
+    205 |     const newConversationId = `conv-${Date.now()}`;
+
+ERROR in src/hooks/useChat.ts:206:5
+TS2304: Cannot find name 'updateState'.
+    204 |   const startNewConversation = useCallback(() => {
+    205 |     const newConversationId = `conv-${Date.now()}`;
+  > 206 |     updateState({ 
+        |     ^^^^^^^^^^^
+    207 |       currentConversationId: newConversationId,
+    208 |       messages: [],
+    209 |       error: null 
+
+ERROR in src/hooks/useChat.ts:211:7
+TS2304: Cannot find name 'updateState'.
+    209 |       error: null 
+    210 |     });
+  > 211 |   }, [updateState]);
+        |       ^^^^^^^^^^^
+    212 |
+    213 |   const switchConversation = useCallback(async (conversationId: string) => {
+    214 |     updateState({ isLoading: true, error: null });
+
+ERROR in src/hooks/useChat.ts:214:5
+TS2304: Cannot find name 'updateState'.
+    212 |
+    213 |   const switchConversation = useCallback(async (conversationId: string) => {
+  > 214 |     updateState({ isLoading: true, error: null });
+        |     ^^^^^^^^^^^
+    215 |
+    216 |     try {
+    217 |       // Load conversation from memory first
+
+ERROR in src/hooks/useChat.ts:218:22
+TS2304: Cannot find name 'conversationsRef'.
+    216 |     try {
+    217 |       // Load conversation from memory first
+  > 218 |       let messages = conversationsRef.current.get(conversationId) || [];
+        |                      ^^^^^^^^^^^^^^^^
+    219 |       
+    220 |       // If not in memory, try to load from backend
+    221 |       if (messages.length === 0) {
+
+ERROR in src/hooks/useChat.ts:224:11
+TS2304: Cannot find name 'conversationsRef'.
+    222 |         try {
+    223 |           messages = await chatApiService.getConversationHistory(conversationId);
+  > 224 |           conversationsRef.current.set(conversationId, messages);
+        |           ^^^^^^^^^^^^^^^^
+    225 |         } catch (error) {
+    226 |           console.warn('Could not load conversation history:', error);
+    227 |         }
+
+ERROR in src/hooks/useChat.ts:230:7
+TS2304: Cannot find name 'updateState'.
+    228 |       }
+    229 |
+  > 230 |       updateState({ 
+        |       ^^^^^^^^^^^
+    231 |         currentConversationId: conversationId,
+    232 |         messages,
+    233 |       });
+
+ERROR in src/hooks/useChat.ts:236:7
+TS2304: Cannot find name 'updateState'.
+    234 |     } catch (error) {
+    235 |       console.error('Failed to switch conversation:', error);
+  > 236 |       updateState({ 
+        |       ^^^^^^^^^^^
+    237 |         error: error instanceof Error ? error.message : 'Failed to load conversation' 
+    238 |       });
+    239 |     } finally {
+
+ERROR in src/hooks/useChat.ts:240:7
+TS2304: Cannot find name 'updateState'.
+    238 |       });
+    239 |     } finally {
+  > 240 |       updateState({ isLoading: false });
+        |       ^^^^^^^^^^^
+    241 |     }
+    242 |   }, [updateState]);
+    243 |
+
+ERROR in src/hooks/useChat.ts:242:7
+TS2304: Cannot find name 'updateState'.
+    240 |       updateState({ isLoading: false });
+    241 |     }
+  > 242 |   }, [updateState]);
+        |       ^^^^^^^^^^^
+    243 |
+    244 |   const clearCurrentConversation = useCallback(async () => {
+    245 |     if (!state.currentConversationId) return;
+
+ERROR in src/hooks/useChat.ts:245:10
+TS2304: Cannot find name 'state'.
+    243 |
+    244 |   const clearCurrentConversation = useCallback(async () => {
+  > 245 |     if (!state.currentConversationId) return;
+        |          ^^^^^
+    246 |
+    247 |     updateState({ isLoading: true, error: null });
+    248 |
+
+ERROR in src/hooks/useChat.ts:247:5
+TS2304: Cannot find name 'updateState'.
+    245 |     if (!state.currentConversationId) return;
+    246 |
+  > 247 |     updateState({ isLoading: true, error: null });
+        |     ^^^^^^^^^^^
+    248 |
+    249 |     try {
+    250 |       await chatApiService.clearConversation(state.currentConversationId);
+
+ERROR in src/hooks/useChat.ts:250:46
+TS2304: Cannot find name 'state'.
+    248 |
+    249 |     try {
+  > 250 |       await chatApiService.clearConversation(state.currentConversationId);
+        |                                              ^^^^^
+    251 |       
+    252 |       // Remove from memory
+    253 |       conversationsRef.current.delete(state.currentConversationId);
+
+ERROR in src/hooks/useChat.ts:253:7
+TS2304: Cannot find name 'conversationsRef'.
+    251 |       
+    252 |       // Remove from memory
+  > 253 |       conversationsRef.current.delete(state.currentConversationId);
+        |       ^^^^^^^^^^^^^^^^
+    254 |       
+    255 |       // Update state
+    256 |       setState(prev => ({
+
+ERROR in src/hooks/useChat.ts:253:39
+TS2304: Cannot find name 'state'.
+    251 |       
+    252 |       // Remove from memory
+  > 253 |       conversationsRef.current.delete(state.currentConversationId);
+        |                                       ^^^^^
+    254 |       
+    255 |       // Update state
+    256 |       setState(prev => ({
+
+ERROR in src/hooks/useChat.ts:256:7
+TS2304: Cannot find name 'setState'.
+    254 |       
+    255 |       // Update state
+  > 256 |       setState(prev => ({
+        |       ^^^^^^^^
+    257 |         ...prev,
+    258 |         messages: [],
+    259 |         conversations: prev.conversations.filter(c => c.id !== state.currentConversationId),
+
+ERROR in src/hooks/useChat.ts:256:16
+TS7006: Parameter 'prev' implicitly has an 'any' type.
+    254 |       
+    255 |       // Update state
+  > 256 |       setState(prev => ({
+        |                ^^^^
+    257 |         ...prev,
+    258 |         messages: [],
+    259 |         conversations: prev.conversations.filter(c => c.id !== state.currentConversationId),
+
+ERROR in src/hooks/useChat.ts:259:50
+TS7006: Parameter 'c' implicitly has an 'any' type.
+    257 |         ...prev,
+    258 |         messages: [],
+  > 259 |         conversations: prev.conversations.filter(c => c.id !== state.currentConversationId),
+        |                                                  ^
+    260 |         currentConversationId: null,
+    261 |         isLoading: false,
+    262 |       }));
+
+ERROR in src/hooks/useChat.ts:259:64
+TS2304: Cannot find name 'state'.
+    257 |         ...prev,
+    258 |         messages: [],
+  > 259 |         conversations: prev.conversations.filter(c => c.id !== state.currentConversationId),
+        |                                                                ^^^^^
+    260 |         currentConversationId: null,
+    261 |         isLoading: false,
+    262 |       }));
+
+ERROR in src/hooks/useChat.ts:265:7
+TS2304: Cannot find name 'updateState'.
+    263 |     } catch (error) {
+    264 |       console.error('Failed to clear conversation:', error);
+  > 265 |       updateState({ 
+        |       ^^^^^^^^^^^
+    266 |         error: error instanceof Error ? error.message : 'Failed to clear conversation',
+    267 |         isLoading: false,
+    268 |       });
+
+ERROR in src/hooks/useChat.ts:270:7
+TS2304: Cannot find name 'state'.
+    268 |       });
+    269 |     }
+  > 270 |   }, [state.currentConversationId, updateState]);
+        |       ^^^^^
+    271 |
+    272 |   const refreshHealth = useCallback(async () => {
+    273 |     try {
+
+ERROR in src/hooks/useChat.ts:270:36
+TS2304: Cannot find name 'updateState'.
+    268 |       });
+    269 |     }
+  > 270 |   }, [state.currentConversationId, updateState]);
+        |                                    ^^^^^^^^^^^
+    271 |
+    272 |   const refreshHealth = useCallback(async () => {
+    273 |     try {
+
+ERROR in src/hooks/useChat.ts:275:7
+TS2304: Cannot find name 'updateState'.
+    273 |     try {
+    274 |       const health = await chatApiService.getServiceHealth();
+  > 275 |       updateState({ 
+        |       ^^^^^^^^^^^
+    276 |         serviceHealth: health,
+    277 |         isConnected: health.status === 'healthy',
+    278 |         error: health.status === 'healthy' ? null : `Service status: ${health.status}`,
+
+ERROR in src/hooks/useChat.ts:282:7
+TS2304: Cannot find name 'updateState'.
+    280 |     } catch (error) {
+    281 |       console.error('Health check failed:', error);
+  > 282 |       updateState({ 
+        |       ^^^^^^^^^^^
+    283 |         serviceHealth: { status: 'error' },
+    284 |         isConnected: false,
+    285 |         error: 'Cannot connect to chat service',
+
+ERROR in src/hooks/useChat.ts:288:7
+TS2304: Cannot find name 'updateState'.
+    286 |       });
+    287 |     }
+  > 288 |   }, [updateState]);
+        |       ^^^^^^^^^^^
+    289 |
+    290 |   const loadCapabilities = useCallback(async () => {
+    291 |     try {
+
+ERROR in src/hooks/useChat.ts:293:7
+TS2304: Cannot find name 'updateState'.
+    291 |     try {
+    292 |       const capabilities = await chatApiService.getServiceCapabilities();
+  > 293 |       updateState({ capabilities });
+        |       ^^^^^^^^^^^
+    294 |     } catch (error) {
+    295 |       console.warn('Failed to load capabilities (non-critical):', error);
+    296 |       // Set a fallback capabilities object so the app doesn't break
+
+ERROR in src/hooks/useChat.ts:297:7
+TS2304: Cannot find name 'updateState'.
+    295 |       console.warn('Failed to load capabilities (non-critical):', error);
+    296 |       // Set a fallback capabilities object so the app doesn't break
+  > 297 |       updateState({ 
+        |       ^^^^^^^^^^^
+    298 |         capabilities: {
+    299 |           models: ['llama3.2:latest'], // Default model
+    300 |           toolsEnabled: true,
+
+ERROR in src/hooks/useChat.ts:306:7
+TS2304: Cannot find name 'updateState'.
+    304 |       });
+    305 |     }
+  > 306 |   }, [updateState]);
+        |       ^^^^^^^^^^^
+    307 |
+    308 |   const retryConnection = useCallback(async () => {
+    309 |     updateState({ error: null });
+
+ERROR in src/hooks/useChat.ts:309:5
+TS2304: Cannot find name 'updateState'.
+    307 |
+    308 |   const retryConnection = useCallback(async () => {
+  > 309 |     updateState({ error: null });
+        |     ^^^^^^^^^^^
+    310 |     await refreshHealth();
+    311 |   }, [refreshHealth, updateState]);
+    312 |
+
+ERROR in src/hooks/useChat.ts:311:22
+TS2304: Cannot find name 'updateState'.
+    309 |     updateState({ error: null });
+    310 |     await refreshHealth();
+  > 311 |   }, [refreshHealth, updateState]);
+        |                      ^^^^^^^^^^^
+    312 |
+    313 |   return {
+    314 |     ...state,
+
+ERROR in src/hooks/useChat.ts:323:1
+TS1128: Declaration or statement expected.
+    321 |     retryConnection,
+    322 |   };
+  > 323 | };
+        | ^
+
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/hooks/useChat.ts
+  Line 59:6:  React Hook useEffect has missing dependencies: 'loadCapabilities' and 'refreshHealth'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src/services/chatApi.ts
+  Line 1:86:  'ToolCallResult' is defined but never used  @typescript-eslint/no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/hooks/useChat.ts
+  Line 59:6:  React Hook useEffect has missing dependencies: 'loadCapabilities' and 'refreshHealth'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src/services/chatApi.ts
+  Line 1:86:  'ToolCallResult' is defined but never used  @typescript-eslint/no-unused-vars
+
+webpack compiled with 1 warning
+No issues found.
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/services/chatApi.ts
+  Line 1:86:  'ToolCallResult' is defined but never used  @typescript-eslint/no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/services/chatApi.ts
+  Line 1:86:  'ToolCallResult' is defined but never used  @typescript-eslint/no-unused-vars
+
+webpack compiled with 1 warning
+No issues found.
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+No issues found.
