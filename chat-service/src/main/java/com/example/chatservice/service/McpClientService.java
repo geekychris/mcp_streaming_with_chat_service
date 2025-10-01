@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -46,11 +47,14 @@ public class McpClientService {
     public Mono<ToolCallResult> executeToolCall(ToolCall toolCall) {
         logger.info("Executing tool call: {} with parameters: {}", toolCall.getName(), toolCall.getParameters());
         
-        // Create MCP request
+        // Translate parameters for macOS environment
+        Map<String, Object> translatedParameters = translateParameters(toolCall.getParameters());
+        
+        // Create MCP request with proper format
         Map<String, Object> mcpRequest = Map.of(
                 "type", "request",
                 "operation", toolCall.getName(),
-                "parameters", toolCall.getParameters() != null ? toolCall.getParameters() : Map.of(),
+                "parameters", translatedParameters,
                 "stream", false
         );
         
@@ -110,16 +114,28 @@ public class McpClientService {
     
     private ToolCallResult processResponse(ToolCall toolCall, JsonNode response) {
         try {
-            if (response.has("status") && "success".equals(response.get("status").asText())) {
-                Object result = response.has("result") ? 
-                        objectMapper.convertValue(response.get("result"), Object.class) : 
-                        null;
-                return ToolCallResult.success(toolCall.getId(), toolCall.getName(), result);
-            } else {
-                String errorMessage = response.has("error_message") ? 
-                        response.get("error_message").asText() : 
-                        "Unknown error occurred";
+            // Handle MCP service response format: {"type": "response", "status": "success", "result": ...}
+            if (response.has("type") && "response".equals(response.get("type").asText())) {
+                if (response.has("status") && "success".equals(response.get("status").asText())) {
+                    Object result = response.has("result") ? 
+                            objectMapper.convertValue(response.get("result"), Object.class) : 
+                            null;
+                    return ToolCallResult.success(toolCall.getId(), toolCall.getName(), result);
+                } else {
+                    String errorMessage = response.has("error_message") ? 
+                            response.get("error_message").asText() : 
+                            "MCP operation failed";
+                    return ToolCallResult.error(toolCall.getId(), toolCall.getName(), errorMessage);
+                }
+            } else if (response.has("type") && "error".equals(response.get("type").asText())) {
+                String errorMessage = response.has("message") ? 
+                        response.get("message").asText() : 
+                        "MCP error occurred";
                 return ToolCallResult.error(toolCall.getId(), toolCall.getName(), errorMessage);
+            } else {
+                // Fallback for unexpected response format
+                logger.warn("Unexpected MCP response format: {}", response.toString());
+                return ToolCallResult.error(toolCall.getId(), toolCall.getName(), "Unexpected response format from MCP service");
             }
         } catch (Exception e) {
             logger.error("Error processing response for tool {}: {}", toolCall.getName(), e.getMessage());
@@ -191,5 +207,52 @@ public class McpClientService {
                 "recursive", recursive,
                 "case_sensitive", false
         ));
+    }
+    
+    /**
+     * Translate parameters to handle macOS-specific paths and common aliases
+     */
+    private Map<String, Object> translateParameters(Map<String, Object> parameters) {
+        if (parameters == null) {
+            return Map.of();
+        }
+        
+        Map<String, Object> translated = new HashMap<>(parameters);
+        
+        // Handle path parameter translation
+        if (translated.containsKey("path")) {
+            String path = translated.get("path").toString();
+            String translatedPath = translatePath(path);
+            translated.put("path", translatedPath);
+            logger.info("Translated path '{}' to '{}'", path, translatedPath);
+        }
+        
+        return translated;
+    }
+    
+    /**
+     * Translate common path aliases to actual macOS paths
+     */
+    private String translatePath(String path) {
+        if (path == null) {
+            return ".";
+        }
+        
+        // Handle common home directory aliases
+        if ("/home".equals(path) || "/home/".equals(path)) {
+            return "/Users/chris";
+        }
+        if (path.startsWith("/home/")) {
+            // Replace /home/username with /Users/chris
+            return path.replaceFirst("/home/[^/]*", "/Users/chris");
+        }
+        if ("~".equals(path) || "~/".equals(path)) {
+            return "/Users/chris";
+        }
+        if (path.startsWith("~/")) {
+            return path.replace("~/", "/Users/chris/");
+        }
+        
+        return path;
     }
 }

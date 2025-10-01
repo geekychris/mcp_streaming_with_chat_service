@@ -275,8 +275,27 @@ public class ChatService {
     }
     
     private List<OllamaModels.Message> convertToOllamaMessages(List<ChatMessage> chatMessages) {
-        return chatMessages.stream()
+        List<OllamaModels.Message> ollamaMessages = new ArrayList<>();
+        
+        // Add system message at the beginning of new conversations to provide context
+        if (chatMessages.isEmpty() || !chatMessages.get(0).getRole().equals("system")) {
+            ollamaMessages.add(new OllamaModels.Message("system", 
+                "You are an AI assistant running on a macOS system. You have access to powerful tools for file operations and system commands. " +
+                "Important system context: " +
+                "- This is macOS, so user home directories are under /Users/ (not /home/) " +
+                "- The current user's home directory is /Users/chris " +
+                "- Use absolute paths when possible " +
+                "- When users ask for 'my home directory' or 'home directory', use /Users/chris " +
+                "- Common macOS paths: /Applications for apps, /tmp for temp files, /Users/chris for user home " +
+                "Always use the available tools to help users with file operations, system commands, and information gathering."
+            ));
+        }
+        
+        // Add all existing messages
+        chatMessages.stream()
                 .map(msg -> new OllamaModels.Message(msg.getRole(), msg.getContent()))
-                .collect(Collectors.toList());
+                .forEach(ollamaMessages::add);
+                
+        return ollamaMessages;
     }
 }

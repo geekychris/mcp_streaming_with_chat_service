@@ -116,13 +116,13 @@ public class OllamaService {
         // File system operations
         tools.add(createTool(
                 "list_directory",
-                "List files and directories in a given path",
+                "List files and directories in a specific directory path. IMPORTANT: This is a macOS system - home directories are under /Users/, NOT /home/. For the current user's home directory, use /Users/chris. For temp directory use /tmp.",
                 Map.of(
                         "type", "object",
                         "properties", Map.of(
                                 "path", Map.of(
                                         "type", "string",
-                                        "description", "The directory path to list"
+                                        "description", "The absolute directory path to list. On macOS: use /Users/chris for user's home directory, /Applications for apps, /tmp for temp files, . for current directory"
                                 )
                         ),
                         "required", List.of("path")
@@ -131,13 +131,13 @@ public class OllamaService {
         
         tools.add(createTool(
                 "read_file",
-                "Read the contents of a file",
+                "Read the contents of a file. Use absolute paths or relative paths from current directory.",
                 Map.of(
                         "type", "object",
                         "properties", Map.of(
                                 "path", Map.of(
                                         "type", "string",
-                                        "description", "The file path to read"
+                                        "description", "The file path to read (e.g., /Users/chris/document.txt, ./README.md, config.json)"
                                 )
                         ),
                         "required", List.of("path")
@@ -204,13 +204,13 @@ public class OllamaService {
         // Command execution
         tools.add(createTool(
                 "execute_command",
-                "Execute a system command",
+                "Execute a system command (bash/shell). Use this to run commands like 'ls', 'pwd', 'date', 'whoami', etc. For getting current time, use 'date'. For listing files, you can also use 'ls -la' command.",
                 Map.of(
                         "type", "object",
                         "properties", Map.of(
                                 "command", Map.of(
                                         "type", "string",
-                                        "description", "The command to execute"
+                                        "description", "The shell command to execute (e.g., 'ls -la', 'pwd', 'date', 'whoami', 'ls ~/Documents')"
                                 ),
                                 "working_directory", Map.of(
                                         "type", "string",
