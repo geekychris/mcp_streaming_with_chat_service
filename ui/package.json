@@ -22,10 +22,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "../chat-react-ui/node_modules/.bin/react-scripts start",
-    "build": "../chat-react-ui/node_modules/.bin/react-scripts build",
-    "test": "../chat-react-ui/node_modules/.bin/react-scripts test",
-    "eject": "../chat-react-ui/node_modules/.bin/react-scripts eject"
+    "start": "../ui/node_modules/.bin/react-scripts start",
+    "build": "../ui/node_modules/.bin/react-scripts build",
+    "test": "../ui/node_modules/.bin/react-scripts test",
+    "eject": "../ui/node_modules/.bin/react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
