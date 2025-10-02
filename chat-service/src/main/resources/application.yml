@@ -32,6 +32,12 @@ management:
       show-details: when_authorized
 
 # Custom application properties
+app:
+  user:
+    # Home directory path - defaults to system property user.home
+    # Can be overridden for testing or different environments
+    # home: /Users/chris
+    
 chat:
   ollama:
     # Ollama API base URL

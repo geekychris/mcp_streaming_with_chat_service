@@ -26,12 +26,14 @@ public class McpClientService {
     private final int timeoutSeconds;
     private final int maxRetries;
     private final int retryDelaySeconds;
+    private final HomeDirectoryService homeDirectoryService;
     
     public McpClientService(
             @Value("${chat.mcp.service-url}") String serviceUrl,
             @Value("${chat.mcp.timeout-seconds}") int timeoutSeconds,
             @Value("${chat.mcp.max-retries}") int maxRetries,
-            @Value("${chat.mcp.retry-delay-seconds}") int retryDelaySeconds) {
+            @Value("${chat.mcp.retry-delay-seconds}") int retryDelaySeconds,
+            HomeDirectoryService homeDirectoryService) {
         this.webClient = WebClient.builder()
                 .baseUrl(serviceUrl)
                 .build();
@@ -39,6 +41,7 @@ public class McpClientService {
         this.timeoutSeconds = timeoutSeconds;
         this.maxRetries = maxRetries;
         this.retryDelaySeconds = retryDelaySeconds;
+        this.homeDirectoryService = homeDirectoryService;
     }
     
     /**
@@ -231,28 +234,25 @@ public class McpClientService {
     }
     
     /**
-     * Translate common path aliases to actual macOS paths
+     * Translate common path aliases to actual system paths
      */
     private String translatePath(String path) {
         if (path == null) {
             return ".";
         }
         
+        String homeDir = homeDirectoryService.getHomeDirectory();
+        
         // Handle common home directory aliases
         if ("/home".equals(path) || "/home/".equals(path)) {
-            return "/Users/chris";
+            return homeDir;
         }
         if (path.startsWith("/home/")) {
-            // Replace /home/username with /Users/chris
-            return path.replaceFirst("/home/[^/]*", "/Users/chris");
-        }
-        if ("~".equals(path) || "~/".equals(path)) {
-            return "/Users/chris";
-        }
-        if (path.startsWith("~/")) {
-            return path.replace("~/", "/Users/chris/");
+            // Replace /home/username with actual home directory
+            return path.replaceFirst("/home/[^/]*", homeDir);
         }
         
-        return path;
+        // Handle tilde expansion
+        return homeDirectoryService.expandTildePath(path);
     }
 }

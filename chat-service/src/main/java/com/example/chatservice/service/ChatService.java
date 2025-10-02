@@ -16,30 +16,32 @@ import java.util.stream.Collectors;
 public class ChatService {
     private static final Logger logger = LoggerFactory.getLogger(ChatService.class);
     
+    private final ConversationService conversationService;
     private final OllamaService ollamaService;
     private final McpClientService mcpClientService;
-    private final ConversationService conversationService;
-    
+    private final HomeDirectoryService homeDirectoryService;
     private final boolean toolsEnabled;
     private final int maxCallsPerTurn;
-    private final int toolTimeoutSeconds;
+    private final int timeoutSeconds;
     
     // Cache for conversation histories
     private final Map<String, List<ChatMessage>> conversationCache = new ConcurrentHashMap<>();
     
     public ChatService(
+            ConversationService conversationService,
             OllamaService ollamaService,
             McpClientService mcpClientService,
-            ConversationService conversationService,
+            HomeDirectoryService homeDirectoryService,
             @Value("${chat.tools.enabled}") boolean toolsEnabled,
             @Value("${chat.tools.max-calls-per-turn}") int maxCallsPerTurn,
-            @Value("${chat.tools.timeout-seconds}") int toolTimeoutSeconds) {
+            @Value("${chat.tools.timeout-seconds}") int timeoutSeconds) {
+        this.conversationService = conversationService;
         this.ollamaService = ollamaService;
         this.mcpClientService = mcpClientService;
-        this.conversationService = conversationService;
+        this.homeDirectoryService = homeDirectoryService;
         this.toolsEnabled = toolsEnabled;
         this.maxCallsPerTurn = maxCallsPerTurn;
-        this.toolTimeoutSeconds = toolTimeoutSeconds;
+        this.timeoutSeconds = timeoutSeconds;
     }
     
     /**
@@ -279,14 +281,14 @@ public class ChatService {
         
         // Add system message at the beginning of new conversations to provide context
         if (chatMessages.isEmpty() || !chatMessages.get(0).getRole().equals("system")) {
+            String homeDir = homeDirectoryService.getHomeDirectory();
             ollamaMessages.add(new OllamaModels.Message("system", 
-                "You are an AI assistant running on a macOS system. You have access to powerful tools for file operations and system commands. " +
+                "You are an AI assistant with access to powerful tools for file operations and system commands. " +
                 "Important system context: " +
-                "- This is macOS, so user home directories are under /Users/ (not /home/) " +
-                "- The current user's home directory is /Users/chris " +
+                "- The current user's home directory is " + homeDir + " " +
                 "- Use absolute paths when possible " +
-                "- When users ask for 'my home directory' or 'home directory', use /Users/chris " +
-                "- Common macOS paths: /Applications for apps, /tmp for temp files, /Users/chris for user home " +
+                "- When users ask for 'my home directory' or 'home directory', use " + homeDir + " " +
+                "- Common paths: /Applications for apps, /tmp for temp files, " + homeDir + " for user home " +
                 "Always use the available tools to help users with file operations, system commands, and information gathering."
             ));
         }

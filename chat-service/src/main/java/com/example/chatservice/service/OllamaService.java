@@ -25,13 +25,15 @@ public class OllamaService {
     private final int timeoutSeconds;
     private final double defaultTemperature;
     private final int defaultMaxTokens;
+    private final HomeDirectoryService homeDirectoryService;
     
     public OllamaService(
             @Value("${chat.ollama.base-url}") String baseUrl,
             @Value("${chat.ollama.default-model}") String defaultModel,
             @Value("${chat.ollama.timeout-seconds}") int timeoutSeconds,
             @Value("${chat.ollama.temperature}") double defaultTemperature,
-            @Value("${chat.ollama.max-tokens}") int defaultMaxTokens) {
+            @Value("${chat.ollama.max-tokens}") int defaultMaxTokens,
+            HomeDirectoryService homeDirectoryService) {
         this.webClient = WebClient.builder()
                 .baseUrl(baseUrl)
                 .build();
@@ -40,6 +42,7 @@ public class OllamaService {
         this.timeoutSeconds = timeoutSeconds;
         this.defaultTemperature = defaultTemperature;
         this.defaultMaxTokens = defaultMaxTokens;
+        this.homeDirectoryService = homeDirectoryService;
     }
     
     /**
@@ -114,15 +117,16 @@ public class OllamaService {
         List<OllamaModels.Tool> tools = new ArrayList<>();
         
         // File system operations
+        String homeDir = homeDirectoryService.getHomeDirectory();
         tools.add(createTool(
                 "list_directory",
-                "List files and directories in a specific directory path. IMPORTANT: This is a macOS system - home directories are under /Users/, NOT /home/. For the current user's home directory, use /Users/chris. For temp directory use /tmp.",
+                "List files and directories in a specific directory path. For the current user's home directory, use " + homeDir + ". For temp directory use /tmp.",
                 Map.of(
                         "type", "object",
                         "properties", Map.of(
                                 "path", Map.of(
                                         "type", "string",
-                                        "description", "The absolute directory path to list. On macOS: use /Users/chris for user's home directory, /Applications for apps, /tmp for temp files, . for current directory"
+                                        "description", "The absolute directory path to list. Use " + homeDir + " for user's home directory, /Applications for apps, /tmp for temp files, . for current directory"
                                 )
                         ),
                         "required", List.of("path")
@@ -137,7 +141,7 @@ public class OllamaService {
                         "properties", Map.of(
                                 "path", Map.of(
                                         "type", "string",
-                                        "description", "The file path to read (e.g., /Users/chris/document.txt, ./README.md, config.json)"
+                                        "description", "The file path to read (e.g., " + homeDir + "/document.txt, ./README.md, config.json)"
                                 )
                         ),
                         "required", List.of("path")
