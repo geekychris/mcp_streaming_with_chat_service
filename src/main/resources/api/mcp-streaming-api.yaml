@@ -1,0 +1,240 @@
+openapi: 3.0.3
+info:
+  title: MCP Streaming Service API
+  description: Spring Boot application implementing MCP streaming service with OS access primitives
+  version: 1.0.0
+  contact:
+    name: MCP Streaming Service
+    email: support@example.com
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /api/mcp/request:
+    post:
+      summary: Handle MCP requests
+      description: Handles MCP requests and returns appropriate responses
+      operationId: handleRequest
+      tags:
+        - MCP Operations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/McpRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/McpError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/McpError'
+
+  /api/mcp/stream:
+    post:
+      summary: Handle streaming MCP requests
+      description: Handles streaming MCP requests and returns a stream of chunks
+      operationId: handleStreamingRequest
+      tags:
+        - MCP Operations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/McpRequest'
+      responses:
+        '200':
+          description: Successful streaming response
+          content:
+            application/x-ndjson:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/McpError'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/McpError'
+
+  /api/mcp/operations:
+    get:
+      summary: List available operations
+      description: Lists all available MCP operations with their descriptions and parameters
+      operationId: listOperations
+      tags:
+        - MCP Operations
+      responses:
+        '200':
+          description: List of available operations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  operations:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/OperationInfo'
+
+  /api/mcp/health:
+    get:
+      summary: Health check
+      description: Returns the health status of the MCP streaming service
+      operationId: health
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Service health information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+components:
+  schemas:
+    McpMessage:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        type:
+          type: string
+          description: Message type
+        timestamp:
+          type: string
+          format: date-time
+          description: Message timestamp
+
+    McpRequest:
+      allOf:
+        - $ref: '#/components/schemas/McpMessage'
+        - type: object
+          required:
+            - operation
+          properties:
+            operation:
+              type: string
+              description: The operation to perform
+              example: "list_directory"
+            parameters:
+              type: object
+              additionalProperties: true
+              description: Operation-specific parameters
+            stream:
+              type: boolean
+              default: false
+              description: Whether to stream the response
+
+    McpResponse:
+      allOf:
+        - $ref: '#/components/schemas/McpMessage'
+        - type: object
+          required:
+            - request_id
+          properties:
+            request_id:
+              type: string
+              description: ID of the originating request
+            status:
+              type: string
+              default: "success"
+              description: Response status
+            result:
+              type: object
+              description: Operation result data
+            stream_complete:
+              type: boolean
+              default: true
+              description: Whether streaming is complete
+
+    McpStreamChunk:
+      allOf:
+        - $ref: '#/components/schemas/McpMessage'
+        - type: object
+          properties:
+            request_id:
+              type: string
+              description: ID of the originating request
+            sequence_number:
+              type: integer
+              format: int64
+              description: Sequence number of this chunk
+            data:
+              type: object
+              description: Chunk data
+            is_final:
+              type: boolean
+              default: false
+              description: Whether this is the final chunk
+
+    McpError:
+      allOf:
+        - $ref: '#/components/schemas/McpMessage'
+        - type: object
+          properties:
+            request_id:
+              type: string
+              description: ID of the originating request
+            error_code:
+              type: string
+              description: Error code
+            error_message:
+              type: string
+              description: Human-readable error message
+            error_type:
+              type: string
+              description: Type of error that occurred
+
+    OperationInfo:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Operation description
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Parameter descriptions
+        streaming:
+          type: boolean
+          description: Whether operation supports streaming
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "UP"
+        service:
+          type: string
+          example: "MCP Streaming Service"
+        version:
+          type: string
+          example: "1.0.0"

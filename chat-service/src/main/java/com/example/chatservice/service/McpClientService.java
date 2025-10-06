@@ -27,13 +27,15 @@ public class McpClientService {
     private final int maxRetries;
     private final int retryDelaySeconds;
     private final HomeDirectoryService homeDirectoryService;
+    private final MarkdownFormatterService markdownFormatterService;
     
     public McpClientService(
             @Value("${chat.mcp.service-url}") String serviceUrl,
             @Value("${chat.mcp.timeout-seconds}") int timeoutSeconds,
             @Value("${chat.mcp.max-retries}") int maxRetries,
             @Value("${chat.mcp.retry-delay-seconds}") int retryDelaySeconds,
-            HomeDirectoryService homeDirectoryService) {
+            HomeDirectoryService homeDirectoryService,
+            MarkdownFormatterService markdownFormatterService) {
         this.webClient = WebClient.builder()
                 .baseUrl(serviceUrl)
                 .build();
@@ -42,6 +44,7 @@ public class McpClientService {
         this.maxRetries = maxRetries;
         this.retryDelaySeconds = retryDelaySeconds;
         this.homeDirectoryService = homeDirectoryService;
+        this.markdownFormatterService = markdownFormatterService;
     }
     
     /**
@@ -120,10 +123,14 @@ public class McpClientService {
             // Handle MCP service response format: {"type": "response", "status": "success", "result": ...}
             if (response.has("type") && "response".equals(response.get("type").asText())) {
                 if (response.has("status") && "success".equals(response.get("status").asText())) {
-                    Object result = response.has("result") ? 
+                    Object rawResult = response.has("result") ? 
                             objectMapper.convertValue(response.get("result"), Object.class) : 
                             null;
-                    return ToolCallResult.success(toolCall.getId(), toolCall.getName(), result);
+                    
+                    // Format the result as markdown based on the operation type
+                    Object formattedResult = markdownFormatterService.formatResult(toolCall.getName(), rawResult);
+                    
+                    return ToolCallResult.success(toolCall.getId(), toolCall.getName(), formattedResult);
                 } else {
                     String errorMessage = response.has("error_message") ? 
                             response.get("error_message").asText() : 
