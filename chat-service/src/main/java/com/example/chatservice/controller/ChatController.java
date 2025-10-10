@@ -136,13 +136,27 @@ public class ChatController {
      */
     @GetMapping("/capabilities")
     public Mono<ResponseEntity<Map<String, Object>>> getCapabilities() {
-        return chatService.getCapabilities()
-                .map(capabilities -> ResponseEntity.ok(capabilities))
-                .onErrorResume(error -> {
-                    logger.error("Failed to get capabilities: {}", error.getMessage());
-                    return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                            .body(Map.of("error", "Failed to get capabilities")));
-                });
+        // Simple static response to unblock React UI
+        Map<String, Object> capabilities = Map.of(
+                "models", List.of("llama3.2:latest", "llama3.1:latest", "llama2:latest"),
+                "tools_enabled", true,
+                "mcp_operations", Map.of(
+                        "list_directory", Map.of(
+                                "description", "List files and directories",
+                                "streaming", true
+                        ),
+                        "read_file", Map.of(
+                                "description", "Read file contents",
+                                "streaming", true
+                        ),
+                        "execute_command", Map.of(
+                                "description", "Execute system commands",
+                                "streaming", true
+                        )
+                ),
+                "max_tool_calls_per_turn", 5
+        );
+        return Mono.just(ResponseEntity.ok(capabilities));
     }
     
     /**

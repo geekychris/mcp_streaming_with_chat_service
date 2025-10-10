@@ -1,6 +1,7 @@
 package com.example.chatservice.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.constraints.NotBlank;
 
 public class ChatRequest {
@@ -8,19 +9,17 @@ public class ChatRequest {
     @NotBlank(message = "Message cannot be blank")
     private String message;
     
-    @JsonProperty("conversation_id")
+    @JsonAlias("conversation_id")
     private String conversationId;
     
     @JsonProperty("model")
     private String model; // Optional override for default model
     
-    @JsonProperty("enable_tools")
     private Boolean enableTools = true;
     
     @JsonProperty("temperature")
     private Double temperature;
     
-    @JsonProperty("max_tokens")
     private Integer maxTokens;
     
     public ChatRequest() {}
