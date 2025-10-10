@@ -13,6 +13,25 @@ spring:
     deserialization:
       fail-on-unknown-properties: false
 
+# Vaadin configuration
+vaadin:
+  # Development mode settings
+  productionMode: false
+  # Enable hotswap for development
+  devmode:
+    liveReload:
+      enabled: true
+  # Static resources configuration
+  servlet:
+    # URL mapping for Vaadin servlet
+    url-mapping: /*
+  # Frontend configuration
+  frontend:
+    # Enable frontend hotdeploy in development
+    hotdeploy: true
+  # Session configuration
+  closeIdleSessions: true
+
 # Logging configuration
 logging:
   level:
@@ -33,6 +52,9 @@ management:
 
 # Custom application properties
 app:
+  api:
+    # Base URL for internal API calls
+    base-url: http://localhost:8081
   user:
     # Home directory path - defaults to system property user.home
     # Can be overridden for testing or different environments

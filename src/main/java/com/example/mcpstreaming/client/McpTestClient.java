@@ -405,25 +405,80 @@ public class McpTestClient {
         String requestJson = objectMapper.writeValueAsString(request);
         
         HttpRequest httpRequest = HttpRequest.newBuilder()
-            .uri(URI.create(baseUrl + "/stream"))
+            .uri(URI.create(baseUrl.replace("/api/mcp", "/api/mcp/sse-stream")))
             .header("Content-Type", "application/json")
-            .header("Accept", "application/x-ndjson")
+            .header("Accept", "text/event-stream")
+            .header("Cache-Control", "no-cache")
             .POST(HttpRequest.BodyPublishers.ofString(requestJson))
+            .timeout(Duration.ofMinutes(5))
             .build();
         
-        System.out.println("Streaming response:");
+        System.out.println("SSE Streaming response:");
         
-        CompletableFuture<HttpResponse<String>> responseAsync = httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
-        
-        HttpResponse<String> response = responseAsync.get();
-        System.out.println("Response status: " + response.statusCode());
-        
-        // Parse NDJSON response
-        String[] lines = response.body().split("\\n");
-        for (String line : lines) {
-            if (!line.trim().isEmpty()) {
-                System.out.println("Stream chunk: " + formatJson(line));
+        try {
+            HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Response status: " + response.statusCode());
+            
+            if (response.statusCode() == 200) {
+                // Parse Server-Sent Events response
+                parseServerSentEvents(response.body());
+            } else {
+                System.err.println("Error response: " + response.body());
             }
+        } catch (Exception e) {
+            System.err.println("Error during SSE request: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Parses Server-Sent Events stream format.
+     */
+    private void parseServerSentEvents(String sseData) {
+        if (sseData == null || sseData.trim().isEmpty()) {
+            System.out.println("Empty SSE response");
+            return;
+        }
+        
+        String[] lines = sseData.split("\\n");
+        StringBuilder eventData = new StringBuilder();
+        String eventType = null;
+        String eventId = null;
+        
+        for (String line : lines) {
+            line = line.trim();
+            
+            if (line.isEmpty()) {
+                // Empty line indicates end of event, process it
+                if (eventData.length() > 0) {
+                    System.out.println("SSE Event [" + (eventType != null ? eventType : "message") + "]");
+                    System.out.println("ID: " + (eventId != null ? eventId : "none"));
+                    System.out.println("Data: " + formatJson(eventData.toString()));
+                    System.out.println("---");
+                }
+                // Reset for next event
+                eventData.setLength(0);
+                eventType = null;
+                eventId = null;
+            } else if (line.startsWith("data:")) {
+                String data = line.substring(5).trim();
+                if (eventData.length() > 0) {
+                    eventData.append("\n");
+                }
+                eventData.append(data);
+            } else if (line.startsWith("event:")) {
+                eventType = line.substring(6).trim();
+            } else if (line.startsWith("id:")) {
+                eventId = line.substring(3).trim();
+            }
+            // Ignore other SSE fields like retry:
+        }
+        
+        // Process final event if there's no trailing empty line
+        if (eventData.length() > 0) {
+            System.out.println("SSE Event [" + (eventType != null ? eventType : "message") + "]");
+            System.out.println("ID: " + (eventId != null ? eventId : "none"));
+            System.out.println("Data: " + formatJson(eventData.toString()));
         }
     }
     

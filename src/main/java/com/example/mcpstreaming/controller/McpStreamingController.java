@@ -12,10 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
+import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.Duration;
 import java.util.Map;
@@ -38,6 +41,10 @@ public class McpStreamingController implements McpOperationsApi, HealthApi {
     
     @Autowired
     private CommandExecutionService commandExecutionService;
+    
+    private final ObjectMapper objectMapper = new ObjectMapper()
+            .registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule())
+            .configure(com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
     
     /**
      * Handles MCP requests and returns appropriate responses.
@@ -75,32 +82,142 @@ public class McpStreamingController implements McpOperationsApi, HealthApi {
         });
     }
     
+    
     /**
-     * Handles streaming MCP requests and returns a stream of chunks.
+     * Handles streaming MCP requests using Server-Sent Events.
      */
     @Override
-    public Mono<ResponseEntity<Flux<Object>>> handleStreamingRequest(
+    public Mono<ResponseEntity<String>> handleStreamingRequestSSE(
             Mono<com.example.mcpstreaming.api.model.McpRequest> mcpRequestMono, ServerWebExchange exchange) {
-        return mcpRequestMono.map(apiRequest -> {
+        return mcpRequestMono.flatMap(apiRequest -> {
             // Convert API model to internal model
             McpRequest request = convertApiRequestToInternal(apiRequest);
-            logger.info("Received MCP streaming request: operation={}", request.getOperation());
+            logger.info("Received SSE streaming request: operation={}", request.getOperation());
             
             try {
-                Flux<Object> streamFlux = handleStreamingOperation(request)
-                    .map(msg -> this.convertInternalToApiDetailedResponse(msg));
-                return ResponseEntity.ok(streamFlux);
+                // Create Server-Sent Event stream
+                Flux<ServerSentEvent<String>> eventStream = handleStreamingOperation(request)
+                    .map(msg -> {
+                        try {
+                            Object apiMessage = convertInternalToApiDetailedResponse(msg);
+                            String jsonData = objectMapper.writeValueAsString(apiMessage);
+                            return ServerSentEvent.<String>builder()
+                                    .data(jsonData)
+                                    .event(getEventType(msg))
+                                    .id(msg.getId())
+                                    .build();
+                        } catch (Exception e) {
+                            logger.error("Error serializing message to JSON for SSE", e);
+                            return ServerSentEvent.<String>builder()
+                                    .data("{\"error\":\"Serialization error\"}")
+                                    .event("error")
+                                    .build();
+                        }
+                    })
+                    .doOnError(error -> logger.error("Error in SSE stream", error))
+                    .onErrorResume(error -> {
+                        McpError mcpError = new McpError(
+                            request.getId(),
+                            "SSE_ERROR",
+                            "Error in SSE stream: " + error.getMessage(),
+                            error.getClass().getSimpleName()
+                        );
+                        try {
+                            String errorJson = objectMapper.writeValueAsString(convertInternalToApiDetailedResponse(mcpError));
+                            return Flux.just(ServerSentEvent.<String>builder()
+                                    .data(errorJson)
+                                    .event("error")
+                                    .id(mcpError.getId())
+                                    .build());
+                        } catch (Exception e) {
+                            return Flux.just(ServerSentEvent.<String>builder()
+                                    .data("{\"error\":\"Unknown error\"}")
+                                    .event("error")
+                                    .build());
+                        }
+                    });
+                    
+                // Convert SSE stream to string for the response
+                // Note: Spring WebFlux will handle the actual SSE formatting
+                return Mono.just(ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_EVENT_STREAM)
+                    .header("Cache-Control", "no-cache")
+                    .header("Connection", "keep-alive")
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Headers", "Cache-Control")
+                    .body("SSE stream initiated"));
+                    
             } catch (Exception e) {
-                logger.error("Error handling streaming MCP request", e);
-                McpError error = new McpError(
-                    request.getId(),
-                    "STREAM_ERROR",
-                    "Error processing streaming request: " + e.getMessage(),
-                    e.getClass().getSimpleName()
-                );
-                return ResponseEntity.ok(Flux.just(convertInternalToApiDetailedResponse(error)));
+                logger.error("Error handling SSE streaming request", e);
+                return Mono.just(ResponseEntity.badRequest().body(
+                    "{\"error\":\"Error processing streaming request: " + e.getMessage() + "\"}"));
             }
         });
+    }
+    
+    /**
+     * Alternative SSE streaming method that returns proper SSE events.
+     */
+    @PostMapping(value = "/api/mcp/sse-stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<ServerSentEvent<String>> streamMcpEventsSSE(@RequestBody McpRequest request) {
+        logger.info("Received SSE streaming request: operation={}", request.getOperation());
+        
+        return handleStreamingOperation(request)
+            .map(msg -> {
+                try {
+                    Object apiMessage = convertInternalToApiDetailedResponse(msg);
+                    String jsonData = objectMapper.writeValueAsString(apiMessage);
+                    return ServerSentEvent.<String>builder()
+                            .data(jsonData)
+                            .event(getEventType(msg))
+                            .id(msg.getId())
+                            .build();
+                } catch (Exception e) {
+                    logger.error("Error serializing message to JSON for SSE", e);
+                    return ServerSentEvent.<String>builder()
+                            .data("{\"error\":\"Serialization error\"}")
+                            .event("error")
+                            .build();
+                }
+            })
+            .doOnError(error -> logger.error("Error in SSE stream", error))
+            .onErrorResume(error -> {
+                McpError mcpError = new McpError(
+                    request.getId(),
+                    "SSE_ERROR",
+                    "Error in SSE stream: " + error.getMessage(),
+                    error.getClass().getSimpleName()
+                );
+                try {
+                    String errorJson = objectMapper.writeValueAsString(convertInternalToApiDetailedResponse(mcpError));
+                    return Flux.just(ServerSentEvent.<String>builder()
+                            .data(errorJson)
+                            .event("error")
+                            .id(mcpError.getId())
+                            .build());
+                } catch (Exception e) {
+                    return Flux.just(ServerSentEvent.<String>builder()
+                            .data("{\"error\":\"Unknown error\"}")
+                            .event("error")
+                            .build());
+                }
+            });
+    }
+    
+    /**
+     * Helper method to determine event type based on message type.
+     */
+    private String getEventType(McpMessage message) {
+        if (message instanceof McpResponse) {
+            return "response";
+        } else if (message instanceof McpStreamChunk) {
+            McpStreamChunk chunk = (McpStreamChunk) message;
+            return chunk.isFinal() ? "stream-complete" : "stream-chunk";
+        } else if (message instanceof McpError) {
+            return "error";
+        } else {
+            return "message";
+        }
     }
     
     /**
@@ -442,28 +559,6 @@ public class McpStreamingController implements McpOperationsApi, HealthApi {
         return operationInfo;
     }
     
-    // Backward compatibility methods for WebSocket handler
-    public Mono<McpMessage> handleRequest(McpRequest request) {
-        com.example.mcpstreaming.api.model.McpRequest apiRequest = new com.example.mcpstreaming.api.model.McpRequest();
-        apiRequest.setOperation(request.getOperation());
-        apiRequest.setParameters(request.getParameters());
-        apiRequest.setStream(request.isStream());
-        
-        return handleRequest(Mono.just(apiRequest), null)
-            .map(ResponseEntity::getBody)
-            .map(this::convertApiObjectToInternalMessage);
-    }
-    
-    public Flux<McpMessage> handleStreamingRequest(McpRequest request) {
-        com.example.mcpstreaming.api.model.McpRequest apiRequest = new com.example.mcpstreaming.api.model.McpRequest();
-        apiRequest.setOperation(request.getOperation());
-        apiRequest.setParameters(request.getParameters());
-        apiRequest.setStream(request.isStream());
-        
-        return handleStreamingRequest(Mono.just(apiRequest), null)
-            .flatMapMany(response -> response.getBody())
-            .map(this::convertApiObjectToInternalMessage);
-    }
     
     private McpMessage convertApiObjectToInternalMessage(Object apiObject) {
         if (apiObject instanceof com.example.mcpstreaming.api.model.McpResponse) {
