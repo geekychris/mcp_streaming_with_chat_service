@@ -90,6 +90,21 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
         
+        <!-- Vaadin Flow Dependencies -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+            <version>24.4.4</version>
+        </dependency>
+        
+        <!-- Markdown processing for chat responses -->
+        <dependency>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark-all</artifactId>
+            <version>0.64.8</version>
+        </dependency>
+        
+        
         <!-- OpenAPI and Swagger Dependencies -->
         <dependency>
             <groupId>org.springdoc</groupId>

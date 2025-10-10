@@ -47,9 +47,9 @@ paths:
 
   /api/mcp/stream:
     post:
-      summary: Handle streaming MCP requests
-      description: Handles streaming MCP requests and returns a stream of chunks
-      operationId: handleStreamingRequest
+      summary: Handle streaming MCP requests with Server-Sent Events
+      description: Handles streaming MCP requests and returns a stream of Server-Sent Events
+      operationId: handleStreamingRequestSSE
       tags:
         - MCP Operations
       requestBody:
@@ -60,13 +60,12 @@ paths:
               $ref: '#/components/schemas/McpRequest'
       responses:
         '200':
-          description: Successful streaming response
+          description: Successful SSE streaming response
           content:
-            application/x-ndjson:
+            text/event-stream:
               schema:
-                type: array
-                items:
-                  type: object
+                type: string
+                description: Server-Sent Events stream containing MCP messages
         '400':
           description: Bad request
           content:
