@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="MCP Streaming With Chat Service logo" width="180">
+</p>
+
 # MCP Streaming + Llama Chat with React UI
 
 A comprehensive AI chat system that combines the power of Llama language models with Model Context Protocol (MCP) tool execution, featuring a modern React web interface. This project demonstrates how to build a complete AI assistant that can interact with the operating system, execute commands, manipulate files, and provide intelligent responses through a beautiful web interface.
